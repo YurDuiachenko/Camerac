@@ -1,4 +1,4 @@
-package com.example.musting.ui
+package com.example.camerac.ui
 
 import android.os.Build
 import android.os.Bundle
@@ -6,6 +6,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.camerac.R
+import com.example.camerac.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -37,9 +39,5 @@ class MainActivity : AppCompatActivity() {
 
     fun navigateHomeToSettings() {
         navController.navigate(R.id.action_homeFragment_to_settingsFragment)
-    }
-
-    fun navigateSettingsToHome() {
-        navController.navigate(R.id.action_settingsFragment_to_homeFragment)
     }
 }

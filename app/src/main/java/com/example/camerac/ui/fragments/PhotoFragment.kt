@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.musting.databinding.FragmentOnboardBinding
 import com.example.musting.ui.MainActivity
 
-class OnboardFragment : Fragment() {
+class PhotoFragment : Fragment() {
 
     private lateinit var binding: FragmentOnboardBinding
 

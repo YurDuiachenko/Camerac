@@ -6,8 +6,8 @@
 
     <fragment
         android:id="@+id/onboardFragment"
-        android:name="com.example.musting.ui.fragments.OnboardFragment"
-        tools:layout="@layout/fragment_onboard">
+        android:name="com.example.musting.ui.fragments.PhotoFragment"
+        tools:layout="@layout/fragment_photo">
         <action
             android:id="@+id/action_onboardFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
@@ -15,8 +15,8 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.musting.ui.fragments.SignInFragment"
-        tools:layout="@layout/fragment_signin">
+        android:name="com.example.musting.ui.fragments.VideoFragment"
+        tools:layout="@layout/fragment_video">
         <argument
             android:name="user"
             app:argType="com.example.musting.ui.model.User"
@@ -30,34 +30,13 @@
             app:destination="@id/homeFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.example.musting.ui.fragments.SignUpFragment"
-        tools:layout="@layout/fragment_signup" >
-        <action
-            android:id="@+id/action_signupFragment_to_signInFragment"
-            app:destination="@id/signInFragment" >
-            <argument
-                android:name="user"
-                app:argType="com.example.musting.ui.model.User" />
-        </action>
-    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.musting.ui.fragments.HomeFragment"
-        tools:layout="@layout/fragment_home">
+        android:name="com.example.musting.ui.fragments.GalleryFragment"
+        tools:layout="@layout/fragment_gallery">
     <action
         android:id="@+id/action_homeFragment_to_settingsFragment"
         app:destination="@id/settingsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.musting.ui.fragments.SettingsFragment"
-        tools:layout="@layout/fragment_settings">
-        <action
-            android:id="@+id/action_settingsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

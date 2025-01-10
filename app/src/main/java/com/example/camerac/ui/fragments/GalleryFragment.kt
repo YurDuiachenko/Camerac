@@ -20,7 +20,7 @@ import com.example.musting.data.repository.CurrencyRepository
 import com.example.musting.data.store.AppDatabase
 import com.example.musting.databinding.FragmentHomeBinding
 import com.example.musting.ui.MainActivity
-import com.example.musting.ui.adapter.CurrentsViewAdapter
+import com.example.musting.ui.adapter.GalleryViewAdapter
 import com.example.musting.ui.model.Currency
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -32,11 +32,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.math.round
 
-class HomeFragment : Fragment() {
+class GalleryFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private lateinit var adapter: CurrentsViewAdapter
+    private lateinit var adapter: GalleryViewAdapter
     private val data: MutableList<Currency> = mutableListOf()
 
     private val repository: CurrencyRepository by lazy {
@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.currents.layoutManager = LinearLayoutManager(context)
-        adapter = CurrentsViewAdapter(data)
+        adapter = GalleryViewAdapter(data)
         binding.currents.adapter = adapter
 
         getDataFromDatabase()

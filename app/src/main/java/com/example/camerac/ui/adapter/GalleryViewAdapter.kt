@@ -8,19 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.musting.databinding.CurrentsItemLayoutBinding
 import com.example.musting.ui.model.Currency
 
-class CurrentsViewAdapter(private val data: List<Currency>) : RecyclerView.Adapter<CurrentsViewHolder>() {
+class GalleryViewAdapter(private val data: List<Currency>) : RecyclerView.Adapter<GalleryViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
         val binding = CurrentsItemLayoutBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return CurrentsViewHolder(binding)
+        return GalleryViewHolder(binding)
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: CurrentsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         val item = data[position]
         with(holder.binding) {
             shortName.text = item.shortName

@@ -1,4 +1,4 @@
-package com.example.musting.ui.fragments
+package com.example.camerac.ui.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -9,11 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.example.musting.R
-import com.example.musting.databinding.FragmentSigninBinding
-import com.example.musting.ui.MainActivity
 
-class SignInFragment : Fragment(R.layout.fragment_signin) {
+class VideoFragment : Fragment(R.layout.fragment_signin) {
     private lateinit var binding: FragmentSigninBinding
 
     override fun onCreateView(
