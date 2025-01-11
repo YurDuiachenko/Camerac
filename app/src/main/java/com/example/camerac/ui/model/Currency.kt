@@ -1,4 +1,4 @@
-package com.example.musting.ui.model
+package com.example.camerac.ui.model
 
 data class Currency(
     val shortName: String,

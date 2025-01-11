@@ -2,41 +2,68 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/onboardFragment">
+    app:startDestination="@id/photoFragment">
 
     <fragment
-        android:id="@+id/onboardFragment"
-        android:name="com.example.musting.ui.fragments.PhotoFragment"
+        android:id="@+id/photoFragment"
+        android:name="com.example.camerac.ui.fragments.PhotoFragment"
         tools:layout="@layout/fragment_photo">
         <action
-            android:id="@+id/action_onboardFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            android:id="@+id/action_photoFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
+        <action
+            android:id="@+id/action_photoFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.example.musting.ui.fragments.VideoFragment"
+        android:id="@+id/videoFragment"
+        android:name="com.example.camerac.ui.fragments.VideoFragment"
         tools:layout="@layout/fragment_video">
-        <argument
-            android:name="user"
-            app:argType="com.example.musting.ui.model.User"
-            android:defaultValue="@null"
-            app:nullable="true"/>
         <action
-            android:id="@+id/action_signinFragment_to_signupFragment"
-            app:destination="@id/signUpFragment" />
+            android:id="@+id/action_videoFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
         <action
-            android:id="@+id/action_signinFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_videoFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
     </fragment>
-
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.musting.ui.fragments.GalleryFragment"
+        android:id="@+id/galleryFragment"
+        android:name="com.example.camerac.ui.fragments.GalleryFragment"
         tools:layout="@layout/fragment_gallery">
-    <action
-        android:id="@+id/action_homeFragment_to_settingsFragment"
-        app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_galleryFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
+        <action
+            android:id="@+id/action_galleryFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
     </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/signInFragment"-->
+<!--        android:name="com.example.musting.ui.fragments.VideoFragment"-->
+<!--        tools:layout="@layout/fragment_video">-->
+<!--        <argument-->
+<!--            android:name="user"-->
+<!--            app:argType="com.example.musting.ui.model.User"-->
+<!--            android:defaultValue="@null"-->
+<!--            app:nullable="true"/>-->
+<!--        <action-->
+<!--            android:id="@+id/action_signinFragment_to_signupFragment"-->
+<!--            app:destination="@id/signUpFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_signinFragment_to_homeFragment"-->
+<!--            app:destination="@id/homeFragment" />-->
+<!--    </fragment>-->
+
+
+<!--    <fragment-->
+<!--        android:id="@+id/homeFragment"-->
+<!--        android:name="com.example.musting.ui.fragments.GalleryFragment"-->
+<!--        tools:layout="@layout/fragment_gallery">-->
+<!--    <action-->
+<!--        android:id="@+id/action_homeFragment_to_settingsFragment"-->
+<!--        app:destination="@id/settingsFragment" />-->
+<!--    </fragment>-->
 </navigation>

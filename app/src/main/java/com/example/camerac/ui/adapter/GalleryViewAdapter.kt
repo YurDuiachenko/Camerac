@@ -1,45 +1,27 @@
-package com.example.musting.ui.adapter
+package com.example.camerac.ui.adapter
 
-import android.annotation.SuppressLint
-import android.graphics.Color
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.musting.databinding.CurrentsItemLayoutBinding
-import com.example.musting.ui.model.Currency
+import com.example.camerac.databinding.ItemImageBinding
 
-class GalleryViewAdapter(private val data: List<Currency>) : RecyclerView.Adapter<GalleryViewHolder>() {
+class GalleryViewAdapter(
+    private val imageUris: List<Uri>,
+) : RecyclerView.Adapter<GalleryViewAdapter.GalleryViewHolder>() {
+
+    class GalleryViewHolder(val binding: ItemImageBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
-        val binding = CurrentsItemLayoutBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding = ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GalleryViewHolder(binding)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
-        val item = data[position]
-        with(holder.binding) {
-            shortName.text = item.shortName
-            fullName.text = item.fullName
-            cost.text = "$" + item.cost.toString()
-            grow.text = when (item.grow >= 0) {
-                true -> "+" + item.grow.toString() + "%"
-                else -> item.grow.toString() + "%"
-            }
-
-            if (item.grow < 0) {
-                grow.setTextColor(Color.parseColor("#A02A38"))
-            } else {
-                grow.setTextColor(Color.parseColor("#45B884"))
-            }
-        }
+        holder.binding.imageItem.setImageURI(imageUris[position])
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return imageUris.size
     }
 }

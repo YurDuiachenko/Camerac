@@ -25,19 +25,27 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
     }
 
-    fun navigateOnboardToSignIn() {
-        navController.navigate(R.id.action_onboardFragment_to_signInFragment)
+    fun navigatePhotoToVideo() {
+        navController.navigate(R.id.action_photoFragment_to_videoFragment)
     }
 
-    fun navigateSignInToHome() {
-        navController.navigate(R.id.action_signinFragment_to_homeFragment)
+    fun navigateVideoToPhoto() {
+        navController.navigate(R.id.action_videoFragment_to_photoFragment)
     }
 
-    fun navigateSignInToSignUp() {
-        navController.navigate(R.id.action_signinFragment_to_signupFragment)
+    fun navigatePhotoToGallery() {
+        navController.navigate(R.id.action_photoFragment_to_galleryFragment)
     }
 
-    fun navigateHomeToSettings() {
-        navController.navigate(R.id.action_homeFragment_to_settingsFragment)
+    fun navigateVideoToGallery() {
+        navController.navigate(R.id.action_videoFragment_to_galleryFragment)
     }
+//
+//    fun navigateSignInToSignUp() {
+//        navController.navigate(R.id.action_signinFragment_to_signupFragment)
+//    }
+//
+//    fun navigateHomeToSettings() {
+//        navController.navigate(R.id.action_homeFragment_to_settingsFragment)
+//    }
 }
