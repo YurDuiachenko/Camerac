@@ -25,7 +25,6 @@ import java.util.*
 class PhotoFragment : Fragment() {
     private var imageCapture: ImageCapture? = null
     private lateinit var outputDirectory: File
-    // Переменная для отслеживания активной камеры (задняя или фронтальная)
     private var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
     private lateinit var binding: FragmentPhotoBinding
@@ -59,32 +58,29 @@ class PhotoFragment : Fragment() {
         binding.label.setOnClickListener {
             (activity as MainActivity).navigatePhotoToVideo()
         }
+
+        binding.galleryBtn.setOnClickListener {
+            (activity as MainActivity).navigatePhotoToGallery()
+        }
     }
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
         cameraProviderFuture.addListener({
-            // Получаем CameraProvider
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-            // Создаем Preview
             val preview = Preview.Builder().build().also {
                 it.setSurfaceProvider(binding.cameraView.surfaceProvider)
             }
 
-            // Конфигурация для захвата изображений
             imageCapture = ImageCapture.Builder().build()
 
             try {
-                // Отвязываем все привязки
                 cameraProvider.unbindAll()
-
-                // Привязываем Preview и захват изображений к жизненному циклу фрагмента
                 cameraProvider.bindToLifecycle(
                     viewLifecycleOwner, cameraSelector, preview, imageCapture
                 )
-
             } catch (exc: Exception) {
                 Log.e(TAG, "Ошибка привязки камеры", exc)
             }
@@ -95,17 +91,13 @@ class PhotoFragment : Fragment() {
     // Захват фото
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
-
-        // Создаем файл для сохранения изображения
         val photoFile = File(
             outputDirectory,
             SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg"
         )
 
-        // Настройки захвата изображения
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-        // Запускаем захват изображения
         imageCapture.takePicture(
             outputOptions, ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
@@ -122,7 +114,6 @@ class PhotoFragment : Fragment() {
         )
     }
 
-    // Функция для переключения камеры
     private fun switchCamera() {
         cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
             CameraSelector.DEFAULT_FRONT_CAMERA
@@ -133,12 +124,10 @@ class PhotoFragment : Fragment() {
         startCamera()
     }
 
-    // Проверка разрешений
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
-    // Получаем директорию для сохранения изображений
     private fun getOutputDirectory(): File {
         val mediaDir = requireContext().externalMediaDirs.firstOrNull()?.let {
             File(it, resources.getString(R.string.app_name)).apply { mkdirs() }

@@ -40,12 +40,4 @@ class MainActivity : AppCompatActivity() {
     fun navigateVideoToGallery() {
         navController.navigate(R.id.action_videoFragment_to_galleryFragment)
     }
-//
-//    fun navigateSignInToSignUp() {
-//        navController.navigate(R.id.action_signinFragment_to_signupFragment)
-//    }
-//
-//    fun navigateHomeToSettings() {
-//        navController.navigate(R.id.action_homeFragment_to_settingsFragment)
-//    }
 }
