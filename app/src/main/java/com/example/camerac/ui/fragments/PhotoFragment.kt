@@ -2,13 +2,17 @@ package com.example.camerac.ui.fragments
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -40,17 +44,15 @@ class PhotoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Проверка разрешений на камеру
+
         if (allPermissionsGranted()) {
             startCamera()
         } else {
             requestPermissions(REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
 
-        // Устанавливаем действие для кнопки захвата
         binding.captureBtn.setOnClickListener { takePhoto() }
 
-        // Устанавливаем действие для кнопки переключения камеры
         binding.rotateBtn.setOnClickListener { switchCamera() }
 
         outputDirectory = getOutputDirectory()
@@ -88,7 +90,6 @@ class PhotoFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-    // Захват фото
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
         val photoFile = File(
@@ -97,6 +98,8 @@ class PhotoFragment : Fragment() {
         )
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+
+        animateFlash()
 
         imageCapture.takePicture(
             outputOptions, ContextCompat.getMainExecutor(requireContext()),
@@ -120,7 +123,6 @@ class PhotoFragment : Fragment() {
         } else {
             CameraSelector.DEFAULT_BACK_CAMERA
         }
-        // Перезапускаем камеру с новым CameraSelector
         startCamera()
     }
 
@@ -133,6 +135,16 @@ class PhotoFragment : Fragment() {
             File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
         }
         return mediaDir ?: requireContext().filesDir
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun animateFlash() {
+        binding.root.postDelayed({
+            binding.root.foreground = ColorDrawable(Color.BLACK)
+            binding.root.postDelayed({
+                binding.root.foreground = null
+            }, 70)
+        }, 70)
     }
 
     companion object {

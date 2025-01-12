@@ -63,7 +63,6 @@ class VideoFragment : Fragment() {
             (activity as MainActivity).navigateVideoToGallery()
         }
 
-        // Кнопка для переключения камеры
         binding.rotateBtn.setOnClickListener { switchCamera() }
     }
 
@@ -108,7 +107,6 @@ class VideoFragment : Fragment() {
     private fun startRecording() {
         val videoCapture = this.videoCapture ?: return
 
-        // Создаем новый файл для записи или продолжаем запись в текущий файл
         currentVideoFile = File(
             outputDirectory,
             SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".mp4"
@@ -179,22 +177,16 @@ class VideoFragment : Fragment() {
         }
     }
 
-    // Переключение между фронтальной и задней камерой
     private fun switchCamera() {
-        // Останавливаем запись перед переключением камеры
         stopRecording()
 
-        // Переключаем камеру
         cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
             CameraSelector.DEFAULT_FRONT_CAMERA
         } else {
             CameraSelector.DEFAULT_BACK_CAMERA
         }
 
-        // Перезапускаем камеру
         startCamera()
-
-        // Автоматически начинаем новую запись
         startRecording()
     }
 

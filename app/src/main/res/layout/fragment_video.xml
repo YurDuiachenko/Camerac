@@ -6,28 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".ui.fragments.VideoFragment">
+    tools:context=".ui.fragments.PhotoFragment">
+
 
     <androidx.camera.view.PreviewView
         android:id="@+id/cameraView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="200dp" />
-
+        android:layout_marginTop="30dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/captureBtn"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_gravity="center_horizontal|bottom"
+        android:layout_gravity="center"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/white_red_circle_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cameraView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/label"
@@ -39,7 +38,6 @@
         android:text="Видео"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/cameraView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,28 +48,25 @@
         android:id="@+id/galleryBtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
         android:clickable="true"
-        android:src="@color/white"
         android:focusable="true"
+        android:src="@mipmap/icons1"
         app:layout_constraintBottom_toBottomOf="@+id/captureBtn"
         app:layout_constraintEnd_toStartOf="@+id/captureBtn"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cameraView" />
+        app:layout_constraintTop_toTopOf="@+id/captureBtn" />
 
     <ImageView
         android:id="@+id/rotateBtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:src="@mipmap/icon"
         android:clickable="true"
+        android:focusable="true"
+        android:src="@mipmap/icon"
         app:layout_constraintBottom_toBottomOf="@+id/captureBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/captureBtn"
-        app:layout_constraintTop_toBottomOf="@+id/cameraView"
-        android:focusable="true" />
+        app:layout_constraintTop_toTopOf="@+id/captureBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
